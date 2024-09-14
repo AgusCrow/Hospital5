@@ -11,11 +11,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class Hospital5Application {
 
 
+
     public static void main(String[] args) {
         SpringApplication.run(Hospital5Application.class, args);
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate();  // Assuming you have a JdbcTemplate instance
-        EntityManager entityManager;
+        EntityManager entityManager = null;  // Assuming you have an EntityManager instance
         MedicoDAO medicoDAO = new MedicoDAO(entityManager);        // Assuming you have a MedicoDAO instance
 
         Menu menu = new Menu(jdbcTemplate, medicoDAO);

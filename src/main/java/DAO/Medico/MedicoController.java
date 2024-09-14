@@ -12,10 +12,12 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RestController
 @RequestMapping("/medicos")
 public class MedicoController {
 
-    private final MedicoDAO medicoDAO;
+    @Autowired
+    private MedicoDAO medicoDAO;
 
     @Autowired
     public MedicoController(MedicoDAO medicoDAO) {
@@ -23,12 +25,10 @@ public class MedicoController {
     }
 
     // GET /medicos - List all medicos
-    @GetMapping()
-    public String mostrarMedicos() {
-        List<Medico> medicos = medicoDAO.buscarTodos();
-        Gson gson = new Gson();
-        String json = gson.toJson(medicos);
-        return "showMedicos?medicos=" + json;
+
+    @GetMapping
+    public List<Medico> obtenerTodosLosMedicos() {
+        return medicoDAO.buscarTodos();
     }
 
     // GET /medicos/{id} - Get a single medico by ID
